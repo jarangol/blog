@@ -31,7 +31,7 @@ a,a:visited{
     padding: 10px 7px;
 }
 
-.field{
+.field,.top-space,.actions{
     margin-top: 1em;
 }
 
@@ -55,6 +55,6 @@ a,a:visited{
   font-size: 1.2em;  
 }
 
-.top-space{
-    margin-top: 1em;
+.text-left{
+  text-align: left;
 }
