@@ -1,10 +1,8 @@
 class ArticlesController < ApplicationController
     before_action :authenticate_user!, except: [:show,:index]
-    before_action :set_article, except: [:index,:new]
+    before_action :set_article, except: [:index,:new,:create]
 
      #GET /articles
-    }
-    }
     def index
     #todos los registros
         @articles = Article.all
@@ -12,8 +10,9 @@ class ArticlesController < ApplicationController
 
     #GET /articles/:id
     def show
+      @article.update_visits_count
     end
-    
+
     #GET /articles/new
     def new
         @article = Article.new
@@ -25,7 +24,7 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to @article
         else
-          render :new  
+          render :new
         end
     end
 
@@ -45,9 +44,13 @@ class ArticlesController < ApplicationController
         redirect_to articles_path
     end
 
-    private 
+    private
+
+    def set_article
+        @article = Article.find(params[:id])
+    end
 
     def article_params
         params.require(:article).permit(:title,:body)
     end
-end 
+end
